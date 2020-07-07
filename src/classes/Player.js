@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const ytdl = require('ytdl-core');
 const logger = require('@greencoast/logger');
-const { channel_id } = require(process.env.channel_id);
 const shuffle = require(process.env.shuffle)
 const { PRESENCE_STATUS, ACTIVITY_TYPE } = require('../constants');
 const { shuffleArray } = require('../utils');
@@ -30,7 +29,7 @@ class Player {
   initialize() {
     this.updatePresence();
 
-    this.client.channels.fetch(channel_id)
+    this.client.channels.fetch(process.env.channelid)
       .then((channel) => {
         if (!channel.joinable) {
           logger.fatal("I cannot join the configured voice channel. Maybe I don't have enough permissions?");
