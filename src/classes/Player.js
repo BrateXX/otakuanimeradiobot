@@ -1,7 +1,6 @@
 const fs = require('fs-extra');
 const ytdl = require('ytdl-core');
 const logger = require('@greencoast/logger');
-const shuffle = require(process.env.shuffle)
 const { PRESENCE_STATUS, ACTIVITY_TYPE } = require('../constants');
 const { shuffleArray } = require('../utils');
 const streamEvents = require('../events/stream');
@@ -10,7 +9,7 @@ const dispatcherEvents = require('../events/dispatcher');
 const queueFilename = './data/queue.txt';
 const queue = fs.readFileSync(queueFilename).toString().split('\n').filter((url) => url.startsWith('https://'));
 
-if (shuffle) {
+if (process.env.shuffle) {
   shuffleArray(queue);
 }
 
